@@ -100,7 +100,7 @@ const sendPrompt = async () => {
 				<span>and</span>
 				<a href="https://nuxt.com/docs"
 					class="flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black/70">
-					<img src="/nuxt.svg" class="h-6 mx-2" />
+					<img src="" class="h-6 mx-2" />
 					<p>Nuxt</p>
 				</a>
 				.

@@ -1,0 +1,288 @@
+{
+  "resolvedId": "C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue?vue&type=style&index=0&lang.css?inline&used",
+  "transforms": [
+    {
+      "name": "vite:vue",
+      "result": "\r\n.loader {\r\n\twidth: 12px;\r\n\theight: 12px;\r\n\tborder-radius: 50%;\r\n\tdisplay: block;\r\n\tposition: relative;\r\n\tcolor: #d3d3d3;\r\n\tbox-sizing: border-box;\r\n\tanimation: animloader 2s linear infinite;\r\n}\r\n\r\n@keyframes animloader {\r\n\t0% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 -2px;\r\n\t}\r\n\r\n\t25% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 2px;\r\n\t}\r\n\r\n\t50% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 2px, -38px 0 0 -2px;\r\n\t}\r\n\r\n\t75% {\r\n\t\tbox-shadow: 14px 0 0 2px, 38px 0 0 -2px;\r\n\t}\r\n}",
+      "start": 1714360618950,
+      "end": 1714360618950,
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue"
+        ],
+        "names": [],
+        "mappings": ";AAgHA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;CACP,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;CACX,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC;CACZ,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC;CAClB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC;CACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;CAClB,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;CACd,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;CACtB,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC;AACzC;;AAEA,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE;CACrB,CAAC,EAAE;EACF,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC;CACzE;;CAEA,CAAC,CAAC,EAAE;EACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC;CACxE;;CAEA,CAAC,CAAC,EAAE;EACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC;CACxE;;CAEA,CAAC,CAAC,EAAE;EACH,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,EAAE,CAAC,CAAC,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC,CAAC;CACxC;AACD",
+        "file": "C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue",
+        "sourceRoot": "",
+        "sourcesContent": [
+          "<script setup>\r\nconst messages = ref([\r\n\t{\r\n\t\trole: 'AI',\r\n\t\tmessage: 'Hello! How can I help you?'\r\n\t}\r\n]);\r\nconst loading = ref(false);\r\nconst message = ref('');\r\n\r\nconst scrollToEnd = () => {\r\n\tsetTimeout(() => {\r\n\t\tconst chatMessages = document.querySelector('.chat-messages > div:last-child');\r\n\t\tchatMessages?.scrollIntoView({ behavior: 'smooth', block: 'end' });\r\n\t}, 100);\r\n};\r\n\r\nconst sendPrompt = async () => {\r\n\tif (message.value === '') return;\r\n\tloading.value = true;\r\n\r\n\tmessages.value.push({\r\n\t\trole: 'User',\r\n\t\tmessage: message.value\r\n\t});\r\n\r\n\tscrollToEnd();\r\n\tmessage.value = '';\r\n\r\n\tconst res = await fetch(`/api/chat`, {\r\n\t\tbody: JSON.stringify(messages.value.slice(1)),\r\n\t\tmethod: 'post'\r\n\t});\r\n\r\n\tif (res.status === 200) {\r\n\t\tconst response = await res.json();\r\n\t\tmessages.value.push({\r\n\t\t\trole: 'AI',\r\n\t\t\tmessage: response?.message\r\n\t\t});\r\n\t} else {\r\n\t\tmessages.value.push({\r\n\t\t\trole: 'AI',\r\n\t\t\tmessage: 'Sorry, an error occurred.'\r\n\t\t});\r\n\t}\r\n\r\n\tloading.value = false;\r\n\tscrollToEnd();\r\n};\r\n</script>\r\n\r\n<template>\r\n\t<div class=\"max-w-xl mx-auto text-black\">\r\n\t\t<div class=\"max-w-xl mx-auto\">\r\n\t\t\t<div class=\"bg-stone-900 rounded-md shadow h-[75vh] flex flex-col justify-between\">\r\n\t\t\t\t<div class=\"h-full overflow-auto chat-messages\">\r\n\t\t\t\t\t<div v-for=\"(message, i) in messages\" :key=\"i\" class=\"flex flex-col p-4\">\r\n\t\t\t\t\t\t<div v-if=\"message.role === 'AI'\" class=\"pr-8 mr-auto\">\r\n\t\t\t\t\t\t\t<div class=\"p-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-lg text-smp-2\">\r\n\t\t\t\t\t\t\t\t{{ message.message }}\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div v-else class=\"pl-8 ml-auto\">\r\n\t\t\t\t\t\t\t<div class=\"p-2 mt-1 text-sm text-white bg-blue-400 rounded-lg\">\r\n\t\t\t\t\t\t\t\t{{ message.message }}\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"p-4 ml-10 mr-auto\" v-if=\"loading\">\r\n\t\t\t\t\t\t<span class=\"loader\"></span>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<form @submit.prevent=\"sendPrompt\">\r\n\t\t\t\t\t<div class=\"flex items-center w-full p-4\">\r\n\t\t\t\t\t\t<input v-model=\"message\" type=\"text\" placeholder=\"Type here...\"\r\n\t\t\t\t\t\t\tclass=\"w-full p-2 text-sm text-white bg-transparent bg-gray-100 border rounded-md shadow border-white/40 grow\" />\r\n\t\t\t\t\t\t<button :disabled=\"loading\" type=\"submit\"\r\n\t\t\t\t\t\t\tclass=\"flex items-center justify-center flex-none w-10 h-10 ml-2 bg-indigo-500 rounded-full\">\r\n\t\t\t\t\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5 text-white\" viewBox=\"0 0 24 24\">\r\n\t\t\t\t\t\t\t\t<g fill=\"none\">\r\n\t\t\t\t\t\t\t\t\t<path\r\n\t\t\t\t\t\t\t\t\t\td=\"M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z\" />\r\n\t\t\t\t\t\t\t\t\t<path fill=\"currentColor\"\r\n\t\t\t\t\t\t\t\t\t\td=\"M20.25 3.532a1 1 0 0 1 1.183 1.329l-6 15.5a1 1 0 0 1-1.624.362l-3.382-3.235l-1.203 1.202c-.636.636-1.724.186-1.724-.714v-3.288L2.309 9.723a1 1 0 0 1 .442-1.691l17.5-4.5Zm-2.114 4.305l-7.998 6.607l3.97 3.798zm-1.578-1.29L4.991 9.52l3.692 3.53l7.875-6.505Z\" />\r\n\t\t\t\t\t\t\t\t</g>\r\n\t\t\t\t\t\t\t</svg>\r\n\t\t\t\t\t\t</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</form>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"flex flex-col justify-center w-full my-4\">\r\n\t\t\t<div class=\"flex items-center justify-center my-2\">\r\n\t\t\t\t<span>Built with</span>\r\n\t\t\t\t<a href=\"https://ai.google.dev/docs/gemini_api_overview\"\r\n\t\t\t\t\tclass=\"flex items-center mx-1 font-medium underline transition-colors underline-offset-4 hover:text-black/70\">\r\n\t\t\t\t\t<p>Gemini Pro</p>\r\n\t\t\t\t</a>\r\n\t\t\t\t<span>and</span>\r\n\t\t\t\t<a href=\"https://nuxt.com/docs\"\r\n\t\t\t\t\tclass=\"flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black/70\">\r\n\t\t\t\t\t<img src=\"\" class=\"h-6 mx-2\" />\r\n\t\t\t\t\t<p>Nuxt</p>\r\n\t\t\t\t</a>\r\n\t\t\t\t.\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<style>\r\n.loader {\r\n\twidth: 12px;\r\n\theight: 12px;\r\n\tborder-radius: 50%;\r\n\tdisplay: block;\r\n\tposition: relative;\r\n\tcolor: #d3d3d3;\r\n\tbox-sizing: border-box;\r\n\tanimation: animloader 2s linear infinite;\r\n}\r\n\r\n@keyframes animloader {\r\n\t0% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 -2px;\r\n\t}\r\n\r\n\t25% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 2px;\r\n\t}\r\n\r\n\t50% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 2px, -38px 0 0 -2px;\r\n\t}\r\n\r\n\t75% {\r\n\t\tbox-shadow: 14px 0 0 2px, 38px 0 0 -2px;\r\n\t}\r\n}</style>\r\n"
+        ]
+      }
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1714360618951,
+      "end": 1714360618951,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:layer-aliasing",
+      "start": 1714360618951,
+      "end": 1714360618951,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1714360618951,
+      "end": 1714360618951,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:server-devonly:transform",
+      "start": 1714360618951,
+      "end": 1714360618951,
+      "order": "pre"
+    },
+    {
+      "name": "nuxt:client-fallback-auto-id",
+      "start": 1714360618951,
+      "end": 1714360618951,
+      "order": "pre"
+    },
+    {
+      "name": "vite:css",
+      "result": ".loader{animation:animloader 2s linear infinite;border-radius:50%;box-sizing:border-box;color:#d3d3d3;display:block;height:12px;position:relative;width:12px}@keyframes animloader{0%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 -2px,-38px 0 0 -2px}25%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 -2px,-38px 0 0 2px}50%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 2px,-38px 0 0 -2px}75%{box-shadow:14px 0 0 2px,38px 0 0 -2px}}",
+      "start": 1714360618951,
+      "end": 1714360618954,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue",
+        "mappings": "AACA,QAQC,uCAAwC,CALxC,iBAAkB,CAIlB,qBAAsB,CADtB,aAAc,CAFd,aAAc,CAFd,WAAY,CAGZ,iBAAkB,CAJlB,UAQD,CAEA,sBACC,GACC,oEACD,CAEA,IACC,mEACD,CAEA,IACC,mEACD,CAEA,IACC,qCACD,CACD",
+        "names": [],
+        "sources": [
+          "C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue"
+        ],
+        "sourcesContent": [
+          "\r\n.loader {\r\n\twidth: 12px;\r\n\theight: 12px;\r\n\tborder-radius: 50%;\r\n\tdisplay: block;\r\n\tposition: relative;\r\n\tcolor: #d3d3d3;\r\n\tbox-sizing: border-box;\r\n\tanimation: animloader 2s linear infinite;\r\n}\r\n\r\n@keyframes animloader {\r\n\t0% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 -2px;\r\n\t}\r\n\r\n\t25% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 2px;\r\n\t}\r\n\r\n\t50% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 2px, -38px 0 0 -2px;\r\n\t}\r\n\r\n\t75% {\r\n\t\tbox-shadow: 14px 0 0 2px, 38px 0 0 -2px;\r\n\t}\r\n}"
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1714360618954,
+      "end": 1714360618954,
+      "order": "normal"
+    },
+    {
+      "name": "vite:json",
+      "start": 1714360618954,
+      "end": 1714360618954,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1714360618954,
+      "end": 1714360618954,
+      "order": "normal"
+    },
+    {
+      "name": "vite:vue",
+      "result": ".loader{animation:animloader 2s linear infinite;border-radius:50%;box-sizing:border-box;color:#d3d3d3;display:block;height:12px;position:relative;width:12px}@keyframes animloader{0%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 -2px,-38px 0 0 -2px}25%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 -2px,-38px 0 0 2px}50%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 2px,-38px 0 0 -2px}75%{box-shadow:14px 0 0 2px,38px 0 0 -2px}}",
+      "start": 1714360618954,
+      "end": 1714360618955,
+      "order": "normal",
+      "sourcemaps": {
+        "file": "C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue",
+        "mappings": "AAAA,QAAQ,uCAAuC,CAAC,iBAAiB,CAAC,qBAAqB,CAAC,aAAa,CAAC,aAAa,CAAC,WAAW,CAAC,iBAAiB,CAAC,UAAU,CAAC,sBAAsB,GAAG,oEAAoE,CAAC,IAAI,mEAAmE,CAAC,IAAI,mEAAmE,CAAC,IAAI,qCAAqC,CAAC",
+        "names": [],
+        "sources": [
+          "C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue"
+        ],
+        "sourcesContent": [
+          null
+        ],
+        "version": 3
+      }
+    },
+    {
+      "name": "vite:vue-jsx",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:remove-plugin-metadata",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:components:imports",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "replace",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "ssr-styles",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-post",
+      "result": "export default \".loader{animation:animloader 2s linear infinite;border-radius:50%;box-sizing:border-box;color:#d3d3d3;display:block;height:12px;position:relative;width:12px}@keyframes animloader{0%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 -2px,-38px 0 0 -2px}25%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 -2px,-38px 0 0 2px}50%{box-shadow:14px 0 0 -2px,38px 0 0 -2px,-14px 0 0 2px,-38px 0 0 -2px}75%{box-shadow:14px 0 0 2px,38px 0 0 -2px}}\"",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal",
+      "sourcemaps": {
+        "mappings": ""
+      }
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "commonjs",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:composable-keys",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:imports-transform",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "unctx:transform",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:pages-macros-transform",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-template",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:components-loader",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "nuxt:tree-shake-composables:transform",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "post"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1714360618955,
+      "end": 1714360618955,
+      "order": "normal"
+    }
+  ]
+}
