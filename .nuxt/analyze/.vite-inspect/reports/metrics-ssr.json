@@ -6,14 +6,14 @@
     },
     "resolveId": {
       "invokeCount": 45,
-      "totalTime": 434
+      "totalTime": 382
     },
     "name": "alias"
   },
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 7
+      "totalTime": 6
     },
     "resolveId": {
       "invokeCount": 0,
@@ -24,7 +24,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 2
+      "totalTime": 0
     },
     "resolveId": {
       "invokeCount": 0,
@@ -36,7 +36,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 1
+      "totalTime": 0
     },
     "resolveId": {
       "invokeCount": 0,
@@ -48,7 +48,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 3
+      "totalTime": 0
     },
     "resolveId": {
       "invokeCount": 0,
@@ -83,7 +83,7 @@
   {
     "transform": {
       "invokeCount": 130,
-      "totalTime": 40
+      "totalTime": 52
     },
     "resolveId": {
       "invokeCount": 0,
@@ -95,7 +95,7 @@
   {
     "transform": {
       "invokeCount": 130,
-      "totalTime": 0
+      "totalTime": 2
     },
     "resolveId": {
       "invokeCount": 0,
@@ -107,7 +107,7 @@
   {
     "transform": {
       "invokeCount": 130,
-      "totalTime": 2
+      "totalTime": 4
     },
     "resolveId": {
       "invokeCount": 0,
@@ -119,7 +119,7 @@
   {
     "transform": {
       "invokeCount": 130,
-      "totalTime": 4
+      "totalTime": 2
     },
     "resolveId": {
       "invokeCount": 0,
@@ -142,7 +142,7 @@
   {
     "transform": {
       "invokeCount": 130,
-      "totalTime": 2
+      "totalTime": 13
     },
     "resolveId": {
       "invokeCount": 0,
@@ -154,7 +154,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 4
+      "totalTime": 10
     },
     "resolveId": {
       "invokeCount": 0,
@@ -166,7 +166,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 0
+      "totalTime": 3
     },
     "resolveId": {
       "invokeCount": 0,
@@ -178,7 +178,7 @@
   {
     "transform": {
       "invokeCount": 195,
-      "totalTime": 12
+      "totalTime": 14
     },
     "resolveId": {
       "invokeCount": 0,
@@ -189,11 +189,11 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 5
+      "totalTime": 7
     },
     "resolveId": {
       "invokeCount": 5,
-      "totalTime": 10
+      "totalTime": 11
     },
     "name": "ssr-styles"
   },
@@ -212,7 +212,7 @@
   {
     "transform": {
       "invokeCount": 17,
-      "totalTime": 2
+      "totalTime": 0
     },
     "resolveId": {
       "invokeCount": 56,
@@ -257,7 +257,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 0
+      "totalTime": 2
     },
     "resolveId": {
       "invokeCount": 0,
@@ -268,7 +268,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 0
+      "totalTime": 1
     },
     "resolveId": {
       "invokeCount": 0,
@@ -290,7 +290,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 161
+      "totalTime": 209
     },
     "resolveId": {
       "invokeCount": 0,
@@ -323,7 +323,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 289
+      "totalTime": 361
     },
     "resolveId": {
       "invokeCount": 0,
@@ -334,7 +334,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 0
+      "totalTime": 1
     },
     "resolveId": {
       "invokeCount": 0,
@@ -389,7 +389,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 0
+      "totalTime": 2
     },
     "resolveId": {
       "invokeCount": 0,
@@ -411,7 +411,7 @@
   {
     "transform": {
       "invokeCount": 41,
-      "totalTime": 1188
+      "totalTime": 1373
     },
     "resolveId": {
       "invokeCount": 0,
@@ -444,7 +444,7 @@
   {
     "transform": {
       "invokeCount": 65,
-      "totalTime": 3
+      "totalTime": 2
     },
     "resolveId": {
       "invokeCount": 0,
@@ -459,7 +459,7 @@
     },
     "resolveId": {
       "invokeCount": 70,
-      "totalTime": 33
+      "totalTime": 41
     },
     "name": "vite:resolve"
   },

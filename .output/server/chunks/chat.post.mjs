@@ -34,6 +34,14 @@ AI:`;
       {
         role: "user",
         parts: [{ text: prompt }]
+      },
+      {
+        role: "assistant",
+        parts: [{ text: "AI: " }]
+      },
+      {
+        role: "assistant",
+        parts: [{ text: "Sorry, an error occurred." }]
       }
     ],
     generationConfig,

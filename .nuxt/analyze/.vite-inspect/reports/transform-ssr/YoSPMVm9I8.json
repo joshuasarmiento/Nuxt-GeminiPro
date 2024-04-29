@@ -4,69 +4,69 @@
     {
       "name": "vite:load-fallback",
       "result": "<script setup>\r\nconst messages = ref([\r\n\t{\r\n\t\trole: 'AI',\r\n\t\tmessage: 'Hello! How can I help you?'\r\n\t}\r\n]);\r\nconst loading = ref(false);\r\nconst message = ref('');\r\n\r\nconst scrollToEnd = () => {\r\n\tsetTimeout(() => {\r\n\t\tconst chatMessages = document.querySelector('.chat-messages > div:last-child');\r\n\t\tchatMessages?.scrollIntoView({ behavior: 'smooth', block: 'end' });\r\n\t}, 100);\r\n};\r\n\r\nconst sendPrompt = async () => {\r\n\tif (message.value === '') return;\r\n\tloading.value = true;\r\n\r\n\tmessages.value.push({\r\n\t\trole: 'User',\r\n\t\tmessage: message.value\r\n\t});\r\n\r\n\tscrollToEnd();\r\n\tmessage.value = '';\r\n\r\n\tconst res = await fetch(`/api/chat`, {\r\n\t\tbody: JSON.stringify(messages.value.slice(1)),\r\n\t\tmethod: 'post'\r\n\t});\r\n\r\n\tif (res.status === 200) {\r\n\t\tconst response = await res.json();\r\n\t\tmessages.value.push({\r\n\t\t\trole: 'AI',\r\n\t\t\tmessage: response?.message\r\n\t\t});\r\n\t} else {\r\n\t\tmessages.value.push({\r\n\t\t\trole: 'AI',\r\n\t\t\tmessage: 'Sorry, an error occurred.'\r\n\t\t});\r\n\t}\r\n\r\n\tloading.value = false;\r\n\tscrollToEnd();\r\n};\r\n</script>\r\n\r\n<template>\r\n\t<div class=\"max-w-xl mx-auto text-black\">\r\n\t\t<div class=\"max-w-xl mx-auto\">\r\n\t\t\t<div class=\"bg-stone-900 rounded-md shadow h-[75vh] flex flex-col justify-between\">\r\n\t\t\t\t<div class=\"h-full overflow-auto chat-messages\">\r\n\t\t\t\t\t<div v-for=\"(message, i) in messages\" :key=\"i\" class=\"flex flex-col p-4\">\r\n\t\t\t\t\t\t<div v-if=\"message.role === 'AI'\" class=\"pr-8 mr-auto\">\r\n\t\t\t\t\t\t\t<div class=\"p-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-lg text-smp-2\">\r\n\t\t\t\t\t\t\t\t{{ message.message }}\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t<div v-else class=\"pl-8 ml-auto\">\r\n\t\t\t\t\t\t\t<div class=\"p-2 mt-1 text-sm text-white bg-blue-400 rounded-lg\">\r\n\t\t\t\t\t\t\t\t{{ message.message }}\r\n\t\t\t\t\t\t\t</div>\r\n\t\t\t\t\t\t</div>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t\t<div class=\"p-4 ml-10 mr-auto\" v-if=\"loading\">\r\n\t\t\t\t\t\t<span class=\"loader\"></span>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</div>\r\n\t\t\t\t<form @submit.prevent=\"sendPrompt\">\r\n\t\t\t\t\t<div class=\"flex items-center w-full p-4\">\r\n\t\t\t\t\t\t<input v-model=\"message\" type=\"text\" placeholder=\"Type here...\"\r\n\t\t\t\t\t\t\tclass=\"w-full p-2 text-sm text-white bg-transparent bg-gray-100 border rounded-md shadow border-white/40 grow\" />\r\n\t\t\t\t\t\t<button :disabled=\"loading\" type=\"submit\"\r\n\t\t\t\t\t\t\tclass=\"flex items-center justify-center flex-none w-10 h-10 ml-2 bg-indigo-500 rounded-full\">\r\n\t\t\t\t\t\t\t<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5 text-white\" viewBox=\"0 0 24 24\">\r\n\t\t\t\t\t\t\t\t<g fill=\"none\">\r\n\t\t\t\t\t\t\t\t\t<path\r\n\t\t\t\t\t\t\t\t\t\td=\"M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z\" />\r\n\t\t\t\t\t\t\t\t\t<path fill=\"currentColor\"\r\n\t\t\t\t\t\t\t\t\t\td=\"M20.25 3.532a1 1 0 0 1 1.183 1.329l-6 15.5a1 1 0 0 1-1.624.362l-3.382-3.235l-1.203 1.202c-.636.636-1.724.186-1.724-.714v-3.288L2.309 9.723a1 1 0 0 1 .442-1.691l17.5-4.5Zm-2.114 4.305l-7.998 6.607l3.97 3.798zm-1.578-1.29L4.991 9.52l3.692 3.53l7.875-6.505Z\" />\r\n\t\t\t\t\t\t\t\t</g>\r\n\t\t\t\t\t\t\t</svg>\r\n\t\t\t\t\t\t</button>\r\n\t\t\t\t\t</div>\r\n\t\t\t\t</form>\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"flex flex-col justify-center w-full my-4\">\r\n\t\t\t<div class=\"flex items-center justify-center my-2\">\r\n\t\t\t\t<span>Built with</span>\r\n\t\t\t\t<a href=\"https://ai.google.dev/docs/gemini_api_overview\"\r\n\t\t\t\t\tclass=\"flex items-center mx-1 font-medium underline transition-colors underline-offset-4 hover:text-black/70\">\r\n\t\t\t\t\t<p>Gemini Pro</p>\r\n\t\t\t\t</a>\r\n\t\t\t\t<span>and</span>\r\n\t\t\t\t<a href=\"https://nuxt.com/docs\"\r\n\t\t\t\t\tclass=\"flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black/70\">\r\n\t\t\t\t\t<img src=\"\" class=\"h-6 mx-2\" />\r\n\t\t\t\t\t<p>Nuxt</p>\r\n\t\t\t\t</a>\r\n\t\t\t\t.\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t</div>\r\n</template>\r\n\r\n<style>\r\n.loader {\r\n\twidth: 12px;\r\n\theight: 12px;\r\n\tborder-radius: 50%;\r\n\tdisplay: block;\r\n\tposition: relative;\r\n\tcolor: #d3d3d3;\r\n\tbox-sizing: border-box;\r\n\tanimation: animloader 2s linear infinite;\r\n}\r\n\r\n@keyframes animloader {\r\n\t0% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 -2px;\r\n\t}\r\n\r\n\t25% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 -2px, -38px 0 0 2px;\r\n\t}\r\n\r\n\t50% {\r\n\t\tbox-shadow: 14px 0 0 -2px, 38px 0 0 -2px, -14px 0 0 2px, -38px 0 0 -2px;\r\n\t}\r\n\r\n\t75% {\r\n\t\tbox-shadow: 14px 0 0 2px, 38px 0 0 -2px;\r\n\t}\r\n}</style>\r\n",
-      "start": 1714360618904,
-      "end": 1714360618937,
+      "start": 1714361144134,
+      "end": 1714361144153,
       "sourcemaps": null
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "pre"
     },
     {
       "name": "nuxt:layer-aliasing",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "pre"
     },
     {
       "name": "nuxt:server-devonly:transform",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "pre"
     },
     {
       "name": "nuxt:client-fallback-auto-id",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "pre"
     },
     {
       "name": "vite:css",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "normal"
     },
     {
       "name": "vite:esbuild",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "normal"
     },
     {
       "name": "vite:json",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1714360618937,
-      "end": 1714360618937,
+      "start": 1714361144153,
+      "end": 1714361144153,
       "order": "normal"
     },
     {
       "name": "vite:vue",
       "result": "import { unref as _unref, mergeProps as _mergeProps } from \"vue\"\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\"\n\n\nconst _sfc_main = {\n  __name: 'index',\n  __ssrInlineRender: true,\n  setup(__props) {\n\r\nconst messages = ref([\r\n\t{\r\n\t\trole: 'AI',\r\n\t\tmessage: 'Hello! How can I help you?'\r\n\t}\r\n]);\r\nconst loading = ref(false);\r\nconst message = ref('');\r\n\r\nconst scrollToEnd = () => {\r\n\tsetTimeout(() => {\r\n\t\tconst chatMessages = document.querySelector('.chat-messages > div:last-child');\r\n\t\tchatMessages?.scrollIntoView({ behavior: 'smooth', block: 'end' });\r\n\t}, 100);\r\n};\r\n\r\nconst sendPrompt = async () => {\r\n\tif (message.value === '') return;\r\n\tloading.value = true;\r\n\r\n\tmessages.value.push({\r\n\t\trole: 'User',\r\n\t\tmessage: message.value\r\n\t});\r\n\r\n\tscrollToEnd();\r\n\tmessage.value = '';\r\n\r\n\tconst res = await fetch(`/api/chat`, {\r\n\t\tbody: JSON.stringify(messages.value.slice(1)),\r\n\t\tmethod: 'post'\r\n\t});\r\n\r\n\tif (res.status === 200) {\r\n\t\tconst response = await res.json();\r\n\t\tmessages.value.push({\r\n\t\t\trole: 'AI',\r\n\t\t\tmessage: response?.message\r\n\t\t});\r\n\t} else {\r\n\t\tmessages.value.push({\r\n\t\t\trole: 'AI',\r\n\t\t\tmessage: 'Sorry, an error occurred.'\r\n\t\t});\r\n\t}\r\n\r\n\tloading.value = false;\r\n\tscrollToEnd();\r\n};\r\n\nreturn (_ctx, _push, _parent, _attrs) => {\n  _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"max-w-xl mx-auto text-black\" }, _attrs))}><div class=\"max-w-xl mx-auto\"><div class=\"bg-stone-900 rounded-md shadow h-[75vh] flex flex-col justify-between\"><div class=\"h-full overflow-auto chat-messages\"><!--[-->`)\n  _ssrRenderList(_unref(messages), (message, i) => {\n    _push(`<div class=\"flex flex-col p-4\">`)\n    if (message.role === 'AI') {\n      _push(`<div class=\"pr-8 mr-auto\"><div class=\"p-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-lg text-smp-2\">${_ssrInterpolate(message.message)}</div></div>`)\n    } else {\n      _push(`<div class=\"pl-8 ml-auto\"><div class=\"p-2 mt-1 text-sm text-white bg-blue-400 rounded-lg\">${_ssrInterpolate(message.message)}</div></div>`)\n    }\n    _push(`</div>`)\n  })\n  _push(`<!--]-->`)\n  if (_unref(loading)) {\n    _push(`<div class=\"p-4 ml-10 mr-auto\"><span class=\"loader\"></span></div>`)\n  } else {\n    _push(`<!---->`)\n  }\n  _push(`</div><form><div class=\"flex items-center w-full p-4\"><input${\n    _ssrRenderAttr(\"value\", _unref(message))\n  } type=\"text\" placeholder=\"Type here...\" class=\"w-full p-2 text-sm text-white bg-transparent bg-gray-100 border rounded-md shadow border-white/40 grow\"><button${\n    (_ssrIncludeBooleanAttr(_unref(loading))) ? \" disabled\" : \"\"\n  } type=\"submit\" class=\"flex items-center justify-center flex-none w-10 h-10 ml-2 bg-indigo-500 rounded-full\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5 text-white\" viewBox=\"0 0 24 24\"><g fill=\"none\"><path d=\"M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z\"></path><path fill=\"currentColor\" d=\"M20.25 3.532a1 1 0 0 1 1.183 1.329l-6 15.5a1 1 0 0 1-1.624.362l-3.382-3.235l-1.203 1.202c-.636.636-1.724.186-1.724-.714v-3.288L2.309 9.723a1 1 0 0 1 .442-1.691l17.5-4.5Zm-2.114 4.305l-7.998 6.607l3.97 3.798zm-1.578-1.29L4.991 9.52l3.692 3.53l7.875-6.505Z\"></path></g></svg></button></div></form></div></div><div class=\"flex flex-col justify-center w-full my-4\"><div class=\"flex items-center justify-center my-2\"><span>Built with</span><a href=\"https://ai.google.dev/docs/gemini_api_overview\" class=\"flex items-center mx-1 font-medium underline transition-colors underline-offset-4 hover:text-black/70\"><p>Gemini Pro</p></a><span>and</span><a href=\"https://nuxt.com/docs\" class=\"flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black/70\"><img${\n    _ssrRenderAttr(\"src\", '')\n  } class=\"h-6 mx-2\"><p>Nuxt</p></a> . </div></div></div>`)\n}\n}\n\n}\n\n\nimport \"C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue?vue&type=style&index=0&lang.css\"\n\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\nconst _sfc_setup = _sfc_main.setup\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext()\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\"pages/index.vue\")\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\n}\nexport default _sfc_main",
-      "start": 1714360618937,
-      "end": 1714360618948,
+      "start": 1714361144153,
+      "end": 1714361144159,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -82,119 +82,119 @@
     },
     {
       "name": "vite:vue-jsx",
-      "start": 1714360618948,
-      "end": 1714360618948,
+      "start": 1714361144159,
+      "end": 1714361144159,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1714360618948,
-      "end": 1714360618948,
+      "start": 1714361144159,
+      "end": 1714361144160,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1714360618948,
-      "end": 1714360618948,
+      "start": 1714361144159,
+      "end": 1714361144160,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1714360618948,
-      "end": 1714360618948,
+      "start": 1714361144160,
+      "end": 1714361144160,
       "order": "normal"
     },
     {
       "name": "nuxt:remove-plugin-metadata",
-      "start": 1714360618948,
-      "end": 1714360618948,
+      "start": 1714361144160,
+      "end": 1714361144160,
       "order": "normal"
     },
     {
       "name": "nuxt:components:imports",
-      "start": 1714360618948,
-      "end": 1714360618948,
+      "start": 1714361144160,
+      "end": 1714361144160,
       "order": "normal"
     },
     {
       "name": "replace",
-      "start": 1714360618948,
-      "end": 1714360618948,
+      "start": 1714361144160,
+      "end": 1714361144160,
       "order": "normal"
     },
     {
       "name": "ssr-styles",
-      "start": 1714360618948,
-      "end": 1714360618948,
+      "start": 1714361144160,
+      "end": 1714361144160,
       "order": "normal"
     },
     {
       "name": "vite:define",
       "result": "import { unref as _unref, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nconst _sfc_main = {\n  __name: \"index\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const messages = ref([\n      {\n        role: \"AI\",\n        message: \"Hello! How can I help you?\"\n      }\n    ]);\n    const loading = ref(false);\n    const message = ref(\"\");\n    const scrollToEnd = () => {\n      setTimeout(() => {\n        const chatMessages = (void 0).querySelector(\".chat-messages > div:last-child\");\n        chatMessages?.scrollIntoView({ behavior: \"smooth\", block: \"end\" });\n      }, 100);\n    };\n    const sendPrompt = async () => {\n      if (message.value === \"\")\n        return;\n      loading.value = true;\n      messages.value.push({\n        role: \"User\",\n        message: message.value\n      });\n      scrollToEnd();\n      message.value = \"\";\n      const res = await fetch(`/api/chat`, {\n        body: JSON.stringify(messages.value.slice(1)),\n        method: \"post\"\n      });\n      if (res.status === 200) {\n        const response = await res.json();\n        messages.value.push({\n          role: \"AI\",\n          message: response?.message\n        });\n      } else {\n        messages.value.push({\n          role: \"AI\",\n          message: \"Sorry, an error occurred.\"\n        });\n      }\n      loading.value = false;\n      scrollToEnd();\n    };\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"max-w-xl mx-auto text-black\" }, _attrs))}><div class=\"max-w-xl mx-auto\"><div class=\"bg-stone-900 rounded-md shadow h-[75vh] flex flex-col justify-between\"><div class=\"h-full overflow-auto chat-messages\"><!--[-->`);\n      _ssrRenderList(_unref(messages), (message2, i) => {\n        _push(`<div class=\"flex flex-col p-4\">`);\n        if (message2.role === \"AI\") {\n          _push(`<div class=\"pr-8 mr-auto\"><div class=\"p-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-lg text-smp-2\">${_ssrInterpolate(message2.message)}</div></div>`);\n        } else {\n          _push(`<div class=\"pl-8 ml-auto\"><div class=\"p-2 mt-1 text-sm text-white bg-blue-400 rounded-lg\">${_ssrInterpolate(message2.message)}</div></div>`);\n        }\n        _push(`</div>`);\n      });\n      _push(`<!--]-->`);\n      if (_unref(loading)) {\n        _push(`<div class=\"p-4 ml-10 mr-auto\"><span class=\"loader\"></span></div>`);\n      } else {\n        _push(`<!---->`);\n      }\n      _push(`</div><form><div class=\"flex items-center w-full p-4\"><input${_ssrRenderAttr(\"value\", _unref(message))} type=\"text\" placeholder=\"Type here...\" class=\"w-full p-2 text-sm text-white bg-transparent bg-gray-100 border rounded-md shadow border-white/40 grow\"><button${_ssrIncludeBooleanAttr(_unref(loading)) ? \" disabled\" : \"\"} type=\"submit\" class=\"flex items-center justify-center flex-none w-10 h-10 ml-2 bg-indigo-500 rounded-full\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5 text-white\" viewBox=\"0 0 24 24\"><g fill=\"none\"><path d=\"M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z\"></path><path fill=\"currentColor\" d=\"M20.25 3.532a1 1 0 0 1 1.183 1.329l-6 15.5a1 1 0 0 1-1.624.362l-3.382-3.235l-1.203 1.202c-.636.636-1.724.186-1.724-.714v-3.288L2.309 9.723a1 1 0 0 1 .442-1.691l17.5-4.5Zm-2.114 4.305l-7.998 6.607l3.97 3.798zm-1.578-1.29L4.991 9.52l3.692 3.53l7.875-6.505Z\"></path></g></svg></button></div></form></div></div><div class=\"flex flex-col justify-center w-full my-4\"><div class=\"flex items-center justify-center my-2\"><span>Built with</span><a href=\"https://ai.google.dev/docs/gemini_api_overview\" class=\"flex items-center mx-1 font-medium underline transition-colors underline-offset-4 hover:text-black/70\"><p>Gemini Pro</p></a><span>and</span><a href=\"https://nuxt.com/docs\" class=\"flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black/70\"><img${_ssrRenderAttr(\"src\", \"\")} class=\"h-6 mx-2\"><p>Nuxt</p></a> . </div></div></div>`);\n    };\n  }\n};\nimport \"C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue?vue&type=style&index=0&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"pages/index.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1714360618948,
-      "end": 1714360618968,
+      "start": 1714361144160,
+      "end": 1714361144203,
       "order": "normal",
       "sourcemaps": "{\n  \"version\": 3,\n  \"sources\": [\"C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue?macro=true\"],\n  \"sourcesContent\": [\"import { unref as _unref, mergeProps as _mergeProps } from \\\"vue\\\"\\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \\\"vue/server-renderer\\\"\\n\\n\\nconst _sfc_main = {\\n  __name: 'index',\\n  __ssrInlineRender: true,\\n  setup(__props) {\\n\\r\\nconst messages = ref([\\r\\n\\t{\\r\\n\\t\\trole: 'AI',\\r\\n\\t\\tmessage: 'Hello! How can I help you?'\\r\\n\\t}\\r\\n]);\\r\\nconst loading = ref(false);\\r\\nconst message = ref('');\\r\\n\\r\\nconst scrollToEnd = () => {\\r\\n\\tsetTimeout(() => {\\r\\n\\t\\tconst chatMessages = document.querySelector('.chat-messages > div:last-child');\\r\\n\\t\\tchatMessages?.scrollIntoView({ behavior: 'smooth', block: 'end' });\\r\\n\\t}, 100);\\r\\n};\\r\\n\\r\\nconst sendPrompt = async () => {\\r\\n\\tif (message.value === '') return;\\r\\n\\tloading.value = true;\\r\\n\\r\\n\\tmessages.value.push({\\r\\n\\t\\trole: 'User',\\r\\n\\t\\tmessage: message.value\\r\\n\\t});\\r\\n\\r\\n\\tscrollToEnd();\\r\\n\\tmessage.value = '';\\r\\n\\r\\n\\tconst res = await fetch(`/api/chat`, {\\r\\n\\t\\tbody: JSON.stringify(messages.value.slice(1)),\\r\\n\\t\\tmethod: 'post'\\r\\n\\t});\\r\\n\\r\\n\\tif (res.status === 200) {\\r\\n\\t\\tconst response = await res.json();\\r\\n\\t\\tmessages.value.push({\\r\\n\\t\\t\\trole: 'AI',\\r\\n\\t\\t\\tmessage: response?.message\\r\\n\\t\\t});\\r\\n\\t} else {\\r\\n\\t\\tmessages.value.push({\\r\\n\\t\\t\\trole: 'AI',\\r\\n\\t\\t\\tmessage: 'Sorry, an error occurred.'\\r\\n\\t\\t});\\r\\n\\t}\\r\\n\\r\\n\\tloading.value = false;\\r\\n\\tscrollToEnd();\\r\\n};\\r\\n\\nreturn (_ctx, _push, _parent, _attrs) => {\\n  _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \\\"max-w-xl mx-auto text-black\\\" }, _attrs))}><div class=\\\"max-w-xl mx-auto\\\"><div class=\\\"bg-stone-900 rounded-md shadow h-[75vh] flex flex-col justify-between\\\"><div class=\\\"h-full overflow-auto chat-messages\\\"><!--[-->`)\\n  _ssrRenderList(_unref(messages), (message, i) => {\\n    _push(`<div class=\\\"flex flex-col p-4\\\">`)\\n    if (message.role === 'AI') {\\n      _push(`<div class=\\\"pr-8 mr-auto\\\"><div class=\\\"p-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-lg text-smp-2\\\">${_ssrInterpolate(message.message)}</div></div>`)\\n    } else {\\n      _push(`<div class=\\\"pl-8 ml-auto\\\"><div class=\\\"p-2 mt-1 text-sm text-white bg-blue-400 rounded-lg\\\">${_ssrInterpolate(message.message)}</div></div>`)\\n    }\\n    _push(`</div>`)\\n  })\\n  _push(`<!--]-->`)\\n  if (_unref(loading)) {\\n    _push(`<div class=\\\"p-4 ml-10 mr-auto\\\"><span class=\\\"loader\\\"></span></div>`)\\n  } else {\\n    _push(`<!---->`)\\n  }\\n  _push(`</div><form><div class=\\\"flex items-center w-full p-4\\\"><input${\\n    _ssrRenderAttr(\\\"value\\\", _unref(message))\\n  } type=\\\"text\\\" placeholder=\\\"Type here...\\\" class=\\\"w-full p-2 text-sm text-white bg-transparent bg-gray-100 border rounded-md shadow border-white/40 grow\\\"><button${\\n    (_ssrIncludeBooleanAttr(_unref(loading))) ? \\\" disabled\\\" : \\\"\\\"\\n  } type=\\\"submit\\\" class=\\\"flex items-center justify-center flex-none w-10 h-10 ml-2 bg-indigo-500 rounded-full\\\"><svg xmlns=\\\"http://www.w3.org/2000/svg\\\" class=\\\"w-5 h-5 text-white\\\" viewBox=\\\"0 0 24 24\\\"><g fill=\\\"none\\\"><path d=\\\"M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z\\\"></path><path fill=\\\"currentColor\\\" d=\\\"M20.25 3.532a1 1 0 0 1 1.183 1.329l-6 15.5a1 1 0 0 1-1.624.362l-3.382-3.235l-1.203 1.202c-.636.636-1.724.186-1.724-.714v-3.288L2.309 9.723a1 1 0 0 1 .442-1.691l17.5-4.5Zm-2.114 4.305l-7.998 6.607l3.97 3.798zm-1.578-1.29L4.991 9.52l3.692 3.53l7.875-6.505Z\\\"></path></g></svg></button></div></form></div></div><div class=\\\"flex flex-col justify-center w-full my-4\\\"><div class=\\\"flex items-center justify-center my-2\\\"><span>Built with</span><a href=\\\"https://ai.google.dev/docs/gemini_api_overview\\\" class=\\\"flex items-center mx-1 font-medium underline transition-colors underline-offset-4 hover:text-black/70\\\"><p>Gemini Pro</p></a><span>and</span><a href=\\\"https://nuxt.com/docs\\\" class=\\\"flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black/70\\\"><img${\\n    _ssrRenderAttr(\\\"src\\\", '')\\n  } class=\\\"h-6 mx-2\\\"><p>Nuxt</p></a> . </div></div></div>`)\\n}\\n}\\n\\n}\\n\\n\\nimport \\\"C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue?vue&type=style&index=0&lang.css\\\"\\n\\nimport { useSSRContext as __vite_useSSRContext } from 'vue'\\nconst _sfc_setup = _sfc_main.setup\\n_sfc_main.setup = (props, ctx) => {\\n  const ssrContext = __vite_useSSRContext()\\n  ;(ssrContext.modules || (ssrContext.modules = new Set())).add(\\\"pages/index.vue\\\")\\n  return _sfc_setup ? _sfc_setup(props, ctx) : undefined\\n}\\nexport default _sfc_main\"],\n  \"mappings\": \"AAAA,SAAS,SAAS,QAAQ,cAAc,mBAAmB;AAC3D,SAAS,iBAAiB,gBAAgB,yBAAyB,wBAAwB,kBAAkB,iBAAiB,kBAAkB,iBAAiB,iBAAiB,sBAAsB;AAGxM,MAAM,YAAY;AAAA,EAChB,QAAQ;AAAA,EACR,mBAAmB;AAAA,EACnB,MAAM,SAAS;AAEjB,UAAM,WAAW,IAAI;AAAA,MACpB;AAAA,QACC,MAAM;AAAA,QACN,SAAS;AAAA,MACV;AAAA,IACD,CAAC;AACD,UAAM,UAAU,IAAI,KAAK;AACzB,UAAM,UAAU,IAAI,EAAE;AAEtB,UAAM,cAAc,MAAM;AACzB,iBAAW,MAAM;AAChB,cAAM,eAAe,SAAS,cAAc,iCAAiC;AAC7E,sBAAc,eAAe,EAAE,UAAU,UAAU,OAAO,MAAM,CAAC;AAAA,MAClE,GAAG,GAAG;AAAA,IACP;AAEA,UAAM,aAAa,YAAY;AAC9B,UAAI,QAAQ,UAAU;AAAI;AAC1B,cAAQ,QAAQ;AAEhB,eAAS,MAAM,KAAK;AAAA,QACnB,MAAM;AAAA,QACN,SAAS,QAAQ;AAAA,MAClB,CAAC;AAED,kBAAY;AACZ,cAAQ,QAAQ;AAEhB,YAAM,MAAM,MAAM,MAAM,aAAa;AAAA,QACpC,MAAM,KAAK,UAAU,SAAS,MAAM,MAAM,CAAC,CAAC;AAAA,QAC5C,QAAQ;AAAA,MACT,CAAC;AAED,UAAI,IAAI,WAAW,KAAK;AACvB,cAAM,WAAW,MAAM,IAAI,KAAK;AAChC,iBAAS,MAAM,KAAK;AAAA,UACnB,MAAM;AAAA,UACN,SAAS,UAAU;AAAA,QACpB,CAAC;AAAA,MACF,OAAO;AACN,iBAAS,MAAM,KAAK;AAAA,UACnB,MAAM;AAAA,UACN,SAAS;AAAA,QACV,CAAC;AAAA,MACF;AAEA,cAAQ,QAAQ;AAChB,kBAAY;AAAA,IACb;AAEA,WAAO,CAAC,MAAM,OAAO,SAAS,WAAW;AACvC,YAAM,OAAO,gBAAgB,YAAY,EAAE,OAAO,8BAA8B,GAAG,MAAM,CAAC,CAAC,4KAA4K;AACvQ,qBAAe,OAAO,QAAQ,GAAG,CAACA,UAAS,MAAM;AAC/C,cAAM,iCAAiC;AACvC,YAAIA,SAAQ,SAAS,MAAM;AACzB,gBAAM,2GAA2G,gBAAgBA,SAAQ,OAAO,CAAC,cAAc;AAAA,QACjK,OAAO;AACL,gBAAM,6FAA6F,gBAAgBA,SAAQ,OAAO,CAAC,cAAc;AAAA,QACnJ;AACA,cAAM,QAAQ;AAAA,MAChB,CAAC;AACD,YAAM,UAAU;AAChB,UAAI,OAAO,OAAO,GAAG;AACnB,cAAM,mEAAmE;AAAA,MAC3E,OAAO;AACL,cAAM,SAAS;AAAA,MACjB;AACA,YAAM,+DACJ,eAAe,SAAS,OAAO,OAAO,CAAC,CACzC,iKACG,uBAAuB,OAAO,OAAO,CAAC,IAAK,cAAc,EAC5D,+iDACE,eAAe,OAAO,EAAE,CAC1B,wDAAwD;AAAA,IAC1D;AAAA,EACA;AAEA;AAGA,OAAO;AAEP,SAAS,iBAAiB,4BAA4B;AACtD,MAAM,aAAa,UAAU;AAC7B,UAAU,QAAQ,CAAC,OAAO,QAAQ;AAChC,QAAM,aAAa,qBAAqB;AACvC,GAAC,WAAW,YAAY,WAAW,UAAU,oBAAI,IAAI,IAAI,IAAI,iBAAiB;AAC/E,SAAO,aAAa,WAAW,OAAO,GAAG,IAAI;AAC/C;AACA,eAAe;\",\n  \"names\": [\"message\"]\n}\n"
     },
     {
       "name": "vite:css-post",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144203,
+      "end": 1714361144203,
       "order": "normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144203,
+      "end": 1714361144203,
       "order": "normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144203,
+      "end": 1714361144203,
       "order": "normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144203,
+      "end": 1714361144203,
       "order": "normal"
     },
     {
       "name": "commonjs",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144203,
+      "end": 1714361144203,
       "order": "normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144203,
+      "end": 1714361144203,
       "order": "normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144204,
+      "end": 1714361144204,
       "order": "normal"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144204,
+      "end": 1714361144204,
       "order": "post"
     },
     {
       "name": "nuxt:composable-keys",
-      "start": 1714360618968,
-      "end": 1714360618968,
+      "start": 1714361144204,
+      "end": 1714361144204,
       "order": "post"
     },
     {
       "name": "nuxt:imports-transform",
       "result": "import { ref } from 'vue';\nimport { unref as _unref, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nconst _sfc_main = {\n  __name: \"index\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const messages = ref([\n      {\n        role: \"AI\",\n        message: \"Hello! How can I help you?\"\n      }\n    ]);\n    const loading = ref(false);\n    const message = ref(\"\");\n    const scrollToEnd = () => {\n      setTimeout(() => {\n        const chatMessages = (void 0).querySelector(\".chat-messages > div:last-child\");\n        chatMessages?.scrollIntoView({ behavior: \"smooth\", block: \"end\" });\n      }, 100);\n    };\n    const sendPrompt = async () => {\n      if (message.value === \"\")\n        return;\n      loading.value = true;\n      messages.value.push({\n        role: \"User\",\n        message: message.value\n      });\n      scrollToEnd();\n      message.value = \"\";\n      const res = await fetch(`/api/chat`, {\n        body: JSON.stringify(messages.value.slice(1)),\n        method: \"post\"\n      });\n      if (res.status === 200) {\n        const response = await res.json();\n        messages.value.push({\n          role: \"AI\",\n          message: response?.message\n        });\n      } else {\n        messages.value.push({\n          role: \"AI\",\n          message: \"Sorry, an error occurred.\"\n        });\n      }\n      loading.value = false;\n      scrollToEnd();\n    };\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"max-w-xl mx-auto text-black\" }, _attrs))}><div class=\"max-w-xl mx-auto\"><div class=\"bg-stone-900 rounded-md shadow h-[75vh] flex flex-col justify-between\"><div class=\"h-full overflow-auto chat-messages\"><!--[-->`);\n      _ssrRenderList(_unref(messages), (message2, i) => {\n        _push(`<div class=\"flex flex-col p-4\">`);\n        if (message2.role === \"AI\") {\n          _push(`<div class=\"pr-8 mr-auto\"><div class=\"p-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-lg text-smp-2\">${_ssrInterpolate(message2.message)}</div></div>`);\n        } else {\n          _push(`<div class=\"pl-8 ml-auto\"><div class=\"p-2 mt-1 text-sm text-white bg-blue-400 rounded-lg\">${_ssrInterpolate(message2.message)}</div></div>`);\n        }\n        _push(`</div>`);\n      });\n      _push(`<!--]-->`);\n      if (_unref(loading)) {\n        _push(`<div class=\"p-4 ml-10 mr-auto\"><span class=\"loader\"></span></div>`);\n      } else {\n        _push(`<!---->`);\n      }\n      _push(`</div><form><div class=\"flex items-center w-full p-4\"><input${_ssrRenderAttr(\"value\", _unref(message))} type=\"text\" placeholder=\"Type here...\" class=\"w-full p-2 text-sm text-white bg-transparent bg-gray-100 border rounded-md shadow border-white/40 grow\"><button${_ssrIncludeBooleanAttr(_unref(loading)) ? \" disabled\" : \"\"} type=\"submit\" class=\"flex items-center justify-center flex-none w-10 h-10 ml-2 bg-indigo-500 rounded-full\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5 text-white\" viewBox=\"0 0 24 24\"><g fill=\"none\"><path d=\"M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z\"></path><path fill=\"currentColor\" d=\"M20.25 3.532a1 1 0 0 1 1.183 1.329l-6 15.5a1 1 0 0 1-1.624.362l-3.382-3.235l-1.203 1.202c-.636.636-1.724.186-1.724-.714v-3.288L2.309 9.723a1 1 0 0 1 .442-1.691l17.5-4.5Zm-2.114 4.305l-7.998 6.607l3.97 3.798zm-1.578-1.29L4.991 9.52l3.692 3.53l7.875-6.505Z\"></path></g></svg></button></div></form></div></div><div class=\"flex flex-col justify-center w-full my-4\"><div class=\"flex items-center justify-center my-2\"><span>Built with</span><a href=\"https://ai.google.dev/docs/gemini_api_overview\" class=\"flex items-center mx-1 font-medium underline transition-colors underline-offset-4 hover:text-black/70\"><p>Gemini Pro</p></a><span>and</span><a href=\"https://nuxt.com/docs\" class=\"flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black/70\"><img${_ssrRenderAttr(\"src\", \"\")} class=\"h-6 mx-2\"><p>Nuxt</p></a> . </div></div></div>`);\n    };\n  }\n};\nimport \"C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue?vue&type=style&index=0&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"pages/index.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1714360618968,
-      "end": 1714360618970,
+      "start": 1714361144204,
+      "end": 1714361144208,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -208,8 +208,8 @@
     {
       "name": "nuxt:imports-transform",
       "result": "import { ref } from 'vue';\nimport { unref as _unref, mergeProps as _mergeProps } from \"vue\";\nimport { ssrRenderAttr as _ssrRenderAttr, ssrIncludeBooleanAttr as _ssrIncludeBooleanAttr, ssrRenderAttrs as _ssrRenderAttrs, ssrInterpolate as _ssrInterpolate, ssrRenderList as _ssrRenderList } from \"vue/server-renderer\";\nconst _sfc_main = {\n  __name: \"index\",\n  __ssrInlineRender: true,\n  setup(__props) {\n    const messages = ref([\n      {\n        role: \"AI\",\n        message: \"Hello! How can I help you?\"\n      }\n    ]);\n    const loading = ref(false);\n    const message = ref(\"\");\n    const scrollToEnd = () => {\n      setTimeout(() => {\n        const chatMessages = (void 0).querySelector(\".chat-messages > div:last-child\");\n        chatMessages?.scrollIntoView({ behavior: \"smooth\", block: \"end\" });\n      }, 100);\n    };\n    const sendPrompt = async () => {\n      if (message.value === \"\")\n        return;\n      loading.value = true;\n      messages.value.push({\n        role: \"User\",\n        message: message.value\n      });\n      scrollToEnd();\n      message.value = \"\";\n      const res = await fetch(`/api/chat`, {\n        body: JSON.stringify(messages.value.slice(1)),\n        method: \"post\"\n      });\n      if (res.status === 200) {\n        const response = await res.json();\n        messages.value.push({\n          role: \"AI\",\n          message: response?.message\n        });\n      } else {\n        messages.value.push({\n          role: \"AI\",\n          message: \"Sorry, an error occurred.\"\n        });\n      }\n      loading.value = false;\n      scrollToEnd();\n    };\n    return (_ctx, _push, _parent, _attrs) => {\n      _push(`<div${_ssrRenderAttrs(_mergeProps({ class: \"max-w-xl mx-auto text-black\" }, _attrs))}><div class=\"max-w-xl mx-auto\"><div class=\"bg-stone-900 rounded-md shadow h-[75vh] flex flex-col justify-between\"><div class=\"h-full overflow-auto chat-messages\"><!--[-->`);\n      _ssrRenderList(_unref(messages), (message2, i) => {\n        _push(`<div class=\"flex flex-col p-4\">`);\n        if (message2.role === \"AI\") {\n          _push(`<div class=\"pr-8 mr-auto\"><div class=\"p-2 mt-1 text-sm text-gray-700 bg-gray-200 rounded-lg text-smp-2\">${_ssrInterpolate(message2.message)}</div></div>`);\n        } else {\n          _push(`<div class=\"pl-8 ml-auto\"><div class=\"p-2 mt-1 text-sm text-white bg-blue-400 rounded-lg\">${_ssrInterpolate(message2.message)}</div></div>`);\n        }\n        _push(`</div>`);\n      });\n      _push(`<!--]-->`);\n      if (_unref(loading)) {\n        _push(`<div class=\"p-4 ml-10 mr-auto\"><span class=\"loader\"></span></div>`);\n      } else {\n        _push(`<!---->`);\n      }\n      _push(`</div><form><div class=\"flex items-center w-full p-4\"><input${_ssrRenderAttr(\"value\", _unref(message))} type=\"text\" placeholder=\"Type here...\" class=\"w-full p-2 text-sm text-white bg-transparent bg-gray-100 border rounded-md shadow border-white/40 grow\"><button${_ssrIncludeBooleanAttr(_unref(loading)) ? \" disabled\" : \"\"} type=\"submit\" class=\"flex items-center justify-center flex-none w-10 h-10 ml-2 bg-indigo-500 rounded-full\"><svg xmlns=\"http://www.w3.org/2000/svg\" class=\"w-5 h-5 text-white\" viewBox=\"0 0 24 24\"><g fill=\"none\"><path d=\"M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z\"></path><path fill=\"currentColor\" d=\"M20.25 3.532a1 1 0 0 1 1.183 1.329l-6 15.5a1 1 0 0 1-1.624.362l-3.382-3.235l-1.203 1.202c-.636.636-1.724.186-1.724-.714v-3.288L2.309 9.723a1 1 0 0 1 .442-1.691l17.5-4.5Zm-2.114 4.305l-7.998 6.607l3.97 3.798zm-1.578-1.29L4.991 9.52l3.692 3.53l7.875-6.505Z\"></path></g></svg></button></div></form></div></div><div class=\"flex flex-col justify-center w-full my-4\"><div class=\"flex items-center justify-center my-2\"><span>Built with</span><a href=\"https://ai.google.dev/docs/gemini_api_overview\" class=\"flex items-center mx-1 font-medium underline transition-colors underline-offset-4 hover:text-black/70\"><p>Gemini Pro</p></a><span>and</span><a href=\"https://nuxt.com/docs\" class=\"flex items-center font-medium underline transition-colors underline-offset-4 hover:text-black/70\"><img${_ssrRenderAttr(\"src\", \"\")} class=\"h-6 mx-2\"><p>Nuxt</p></a> . </div></div></div>`);\n    };\n  }\n};\nimport \"C:/Users/jasarmiento/Desktop/github/Nuxt-GeminiPro/pages/index.vue?vue&type=style&index=0&lang.css\";\nimport { useSSRContext as __vite_useSSRContext } from \"vue\";\nconst _sfc_setup = _sfc_main.setup;\n_sfc_main.setup = (props, ctx) => {\n  const ssrContext = __vite_useSSRContext();\n  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add(\"pages/index.vue\");\n  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;\n};\nexport default _sfc_main;\n",
-      "start": 1714360618968,
-      "end": 1714360618970,
+      "start": 1714361144204,
+      "end": 1714361144208,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -222,21 +222,21 @@
     },
     {
       "name": "unctx:transform",
-      "start": 1714360618970,
-      "end": 1714360618970,
+      "start": 1714361144208,
+      "end": 1714361144208,
       "order": "post"
     },
     {
       "name": "unctx:transform",
-      "start": 1714360618970,
-      "end": 1714360618970,
+      "start": 1714361144208,
+      "end": 1714361144208,
       "order": "post"
     },
     {
       "name": "nuxt:pages-macros-transform",
       "result": "\nconst __nuxt_page_meta = null\nexport default __nuxt_page_meta\n",
-      "start": 1714360618970,
-      "end": 1714360618971,
+      "start": 1714361144208,
+      "end": 1714361144209,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -250,8 +250,8 @@
     {
       "name": "nuxt:pages-macros-transform",
       "result": "\nconst __nuxt_page_meta = null\nexport default __nuxt_page_meta\n",
-      "start": 1714360618970,
-      "end": 1714360618971,
+      "start": 1714361144208,
+      "end": 1714361144209,
       "order": "post",
       "sourcemaps": {
         "version": 3,
@@ -264,32 +264,32 @@
     },
     {
       "name": "nuxt:tree-shake-template",
-      "start": 1714360618971,
-      "end": 1714360618971,
+      "start": 1714361144209,
+      "end": 1714361144209,
       "order": "post"
     },
     {
       "name": "nuxt:components-loader",
-      "start": 1714360618971,
-      "end": 1714360618971,
+      "start": 1714361144209,
+      "end": 1714361144209,
       "order": "post"
     },
     {
       "name": "nuxt:tree-shake-composables:transform",
-      "start": 1714360618971,
-      "end": 1714360618971,
+      "start": 1714361144209,
+      "end": 1714361144209,
       "order": "post"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1714360618971,
-      "end": 1714360618971,
+      "start": 1714361144209,
+      "end": 1714361144209,
       "order": "normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1714360618971,
-      "end": 1714360618971,
+      "start": 1714361144209,
+      "end": 1714361144209,
       "order": "normal"
     }
   ]
